@@ -212,19 +212,22 @@ export default function Home() {
     }
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24 break-all">
+        <main className="flex min-h-screen flex-col items-center justify-between p-24 break-all dark:text-white">
             <h1 className="text-4xl font-bold mb-8">
                 MoPro Website Prover Tests
             </h1>
             <div className="mb-8">
                 <h2 className="fix text-2xl font-bold mb-4">Multiplier2</h2>
-                <button className="btn mr-4" onClick={multiplier}>
+                <button
+                    className="btn mr-4 dark:text-white dark:border-white"
+                    onClick={multiplier}
+                >
                     Prove
                 </button>
                 {/* <button className="btn">Verify</button> */}
                 <p className="mt-2">{multiplier2ProvingTime}</p>
             </div>
-            <div className="bg-sky-200">
+            <div className="bg-sky-200 dark:bg-blue-950">
                 {multiplier2Proof && <h3>proof</h3>}
                 <p className="mt-2 break-all ">{multiplier2Proof}</p>
                 {multiplier2PublicSignals && <h3>public signals</h3>}
@@ -232,13 +235,16 @@ export default function Home() {
             </div>
             <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">Keccak256</h2>
-                <button className="btn mr-4" onClick={keccak256}>
+                <button
+                    className="btn mr-4 dark:text-white dark:border-white"
+                    onClick={keccak256}
+                >
                     Prove
                 </button>
                 {/* <button className="btn">Verify</button> */}
                 <p className="mt-2">{keccak256ProvingTime}</p>
             </div>
-            <div className="bg-sky-200 max-w-4xl">
+            <div className="bg-sky-200 dark:bg-blue-950">
                 {keccak256Proof && <h3>proof</h3>}
                 <p className="mt-2 break-all">{keccak256Proof}</p>
                 {keccak256PublicSignals && <h3>public signals</h3>}
@@ -246,13 +252,16 @@ export default function Home() {
             </div>
             <div>
                 <h2 className="text-2xl font-bold mb-4">RSA</h2>
-                <button className="btn mr-4" onClick={RSA}>
+                <button
+                    className="btn mr-4 dark:text-white dark:border-white"
+                    onClick={RSA}
+                >
                     Prove
                 </button>
                 {/* <button className="btn">Verify</button> */}
                 <p className="mt-2">{RSAProvingTime}</p>
             </div>
-            <div className="bg-sky-200">
+            <div className="bg-sky-200 dark:bg-blue-950">
                 {RSAProof && <h3>proof</h3>}
                 <p className="mt-2 break-all">{RSAProof}</p>
                 {RSAPublicSignals && <h3>public signals</h3>}
