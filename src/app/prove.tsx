@@ -48,12 +48,14 @@ async function fullProve(circuit: string, inputs: CircuitSignals) {
 // }
 
 export default function Prove(props: any) {
+    const [proving, setProving] = useState<boolean>(false);
     const [provingTime, setProvingTime] = useState<string>("");
     const [proof, setProof] = useState<string>();
     const [publicSignals, setPublicSignals] = useState<string>("");
     const { file, inputs } = Inputs[props.circuit as keyof typeof Inputs];
 
     async function generateProof() {
+        setProving(true);
         setProvingTime("Calculating...");
         const { proof, publicSignals, provingTime } = await fullProve(
             file,
@@ -62,14 +64,16 @@ export default function Prove(props: any) {
         setProvingTime(`${provingTime / 1000} s`);
         setProof(JSON.stringify(proof));
         setPublicSignals(JSON.stringify(publicSignals));
+        setProving(false);
     }
 
     return (
         <div>
-            <div className="mb-8 mt-8">
+            <div className="mb-4 mt-8">
                 <h2 className="fix text-2xl font-bold mb-4">{props.circuit}</h2>
                 <button
-                    className="btn mr-4 dark:text-white dark:border-white p-1 rounded-lg"
+                    disabled={proving}
+                    className="btn mr-4 text-slate-200 p-1 pl-3 pr-3 rounded-lg bg-[#0062c1] hover:bg-[#319aff] disabled:bg-[#319aff] disabled:cursor-not-allowed shadow-md"
                     onClick={generateProof}
                 >
                     Prove
@@ -80,13 +84,13 @@ export default function Prove(props: any) {
                 )}
             </div>
             {proof && publicSignals && (
-                <div className="bg-sky-200 dark:bg-blue-950 p-2 rounded-md">
+                <div className="bg-sky-200 dark:bg-blue-950 p-5 rounded-md shadow-md">
                     {proof && <h3 className="text-1xl font-bold">proof</h3>}
-                    <p className="mt-2 break-all ">{proof}</p>
+                    <p className="mt-1 break-all ">{proof}</p>
                     {publicSignals && (
                         <h3 className="text-1xl font-bold">public signals</h3>
                     )}
-                    <p className="mt-2 break-all ">{publicSignals}</p>
+                    <p className="mt-1 break-all ">{publicSignals}</p>
                 </div>
             )}
         </div>
